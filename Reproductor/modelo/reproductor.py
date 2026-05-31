@@ -1,5 +1,4 @@
 from PyQt6.QtMultimedia import QMediaPlayer, QAudioOutput
-#from PyQt6.QtMultimedia
 from PyQt6.QtCore import QUrl
 import os
 
@@ -63,4 +62,17 @@ class Reproductor:
             ruta = os.path.join(ruta_carpeta, archivo)
             if ruta.endswith(".jpg"):
                 imagenes.append(archivo)
-        return imagenes 
+        return imagenes
+    
+    def duracion(self):
+        return self.reproductor.duration()
+    
+    def posicion(self):
+        return self.reproductor.position()
+    
+    def saltar_a(self, posicion):
+        self.reproductor.setPosition(posicion)
+
+    def cambiar_volumen(self, volumen):
+        if self.audioOutput:
+            self.audioOutput.setVolume(volumen)
