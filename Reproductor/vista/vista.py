@@ -56,28 +56,20 @@ class VistaPrincipal(QMainWindow):
         song_image.setPixmap(pixmap)
         song_image.setScaledContents(True)
 
-        self.mp3_botton_repeat = QPushButton()
-        self.mp3_botton_repeat.setObjectName("botonRepeat")
         self.mp3_botton_before = QPushButton()
         self.mp3_botton_before.setObjectName("botonBefore")
         self.mp3_botton_play = QPushButton()
         self.mp3_botton_play.setObjectName("botonPlay")
         self.mp3_botton_next = QPushButton()
         self.mp3_botton_next.setObjectName("botonNext")
-        self.mp3_botton_random = QPushButton()
-        self.mp3_botton_random.setObjectName("botonRandom")
 
-        self.mp3_botton_repeat.setFixedSize(40, 40)
         self.mp3_botton_before.setFixedSize(40, 40)
         self.mp3_botton_play.setFixedSize(50, 50)
         self.mp3_botton_next.setFixedSize(40, 40)
-        self.mp3_botton_random.setFixedSize(40, 40)
 
-        buttons_h_box.addWidget(self.mp3_botton_repeat)
         buttons_h_box.addWidget(self.mp3_botton_before)
         buttons_h_box.addWidget(self.mp3_botton_play)
         buttons_h_box.addWidget(self.mp3_botton_next)
-        buttons_h_box.addWidget(self.mp3_botton_random)
 
         buttons_container = QWidget()
         buttons_container.setLayout(buttons_h_box)

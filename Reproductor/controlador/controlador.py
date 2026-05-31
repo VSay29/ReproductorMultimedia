@@ -12,15 +12,22 @@ class Controlador:
         self.conectar_senyales()
 
     def conectar_senyales(self):
+
         self.vista.mp3_botton_play.clicked.connect(self.play_pausa)
         self.vista.mp4_botton_play.clicked.connect(self.play_pausa)
+        
         self.vista.abrir_carpeta_action.triggered.connect(self.abrir_carpeta)
         self.vista.listar_action.triggered.connect(self.mostrar_ocultar_panel_lateral)
         self.vista.lista.itemSelectionChanged.connect(self.manejar_selector_elemento_lista)
         self.vista.tab_bar.currentChanged.connect(self.limpiar_lista)
+
         self.vista.mp3_botton_next.clicked.connect(self.siguiente)
         self.vista.mp4_botton_next.clicked.connect(self.siguiente)
         self.vista.botton_next.clicked.connect(self.siguiente)
+
+        self.vista.mp3_botton_before.clicked.connect(self.anterior)
+        self.vista.mp4_botton_before.clicked.connect(self.anterior)
+        self.vista.botton_before.clicked.connect(self.anterior)
 
     def play_pausa(self):
         if self.reproductor.reproduciendo:
@@ -34,11 +41,16 @@ class Controlador:
         if total == 0:
             return
         actual = self.vista.lista.currentRow()
-        siguiente = (actual + 1) % total
+        siguiente = (actual + 1) % total # % total hace que sea circular
         self.vista.lista.setCurrentRow(siguiente)
 
     def anterior(self):
-        pass
+        total = self.vista.lista.count()
+        if total == 0:
+            return
+        actual = self.vista.lista.currentRow()
+        anterior = (actual - 1) % total # % total hace que sea circular
+        self.vista.lista.setCurrentRow(anterior)
 
     def abrir_carpeta(self):
         initial_dir = QStandardPaths.writableLocation(

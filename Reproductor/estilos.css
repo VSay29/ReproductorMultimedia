@@ -26,17 +26,6 @@ QTabBar::tab {
     font-weight: bold;
 }
 
-QPushButton#botonRepeat {
-    background-color: rgba(0, 0, 0, 0.8);
-    image: url('Reproductor/imagenes/repetir.png');
-    border-radius: 20px;
-    padding: 7px;
-}
-
-QPushButton#botonRepeat:pressed {
-    background-color: azure;
-}
-
 QPushButton#botonBefore {
     background-color: rgba(0, 0, 0, 0.8);
     image: url('Reproductor/imagenes/previous.png');
@@ -67,17 +56,6 @@ QPushButton#botonNext {
 }
 
 QPushButton#botonNext:pressed {
-    background-color: azure;
-}
-
-QPushButton#botonRandom {
-    background-color: rgba(0, 0, 0, 0.8);
-    image: url('Reproductor/imagenes/shuffle.png');
-    border-radius: 20px;
-    padding: 7px;
-}
-
-QPushButton#botonRandom:pressed {
     background-color: azure;
 }
 
