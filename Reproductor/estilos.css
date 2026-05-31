@@ -1,0 +1,101 @@
+QMainWindow {
+    background-image: url('Reproductor/imagenes/fondo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+QDockWidget {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+}
+
+QListWidget {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+QTabWidget {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0;
+}
+
+QTabBar::tab {
+    background: rgba(117, 117, 117, 0.5);
+    color: white;
+    font-weight: bold;
+}
+
+QPushButton#botonRepeat {
+    background-color: rgba(0, 0, 0, 0.8);
+    image: url('Reproductor/imagenes/repetir.png');
+    border-radius: 20px;
+    padding: 7px;
+}
+
+QPushButton#botonRepeat:pressed {
+    background-color: azure;
+}
+
+QPushButton#botonBefore {
+    background-color: rgba(0, 0, 0, 0.8);
+    image: url('Reproductor/imagenes/previous.png');
+    border-radius: 20px;
+    padding: 7px;
+}
+
+QPushButton#botonBefore:pressed {
+    background-color: azure;
+}
+
+QPushButton#botonPlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    image: url('Reproductor/imagenes/play.png');
+    border-radius: 20px;
+    padding: 7px;
+}
+
+QPushButton#botonPlay:pressed {
+    background-color: azure;
+}
+
+QPushButton#botonNext {
+    background-color: rgba(0, 0, 0, 0.8);
+    image: url('Reproductor/imagenes/next.png');
+    border-radius: 20px;
+    padding: 7px;
+}
+
+QPushButton#botonNext:pressed {
+    background-color: azure;
+}
+
+QPushButton#botonRandom {
+    background-color: rgba(0, 0, 0, 0.8);
+    image: url('Reproductor/imagenes/shuffle.png');
+    border-radius: 20px;
+    padding: 7px;
+}
+
+QPushButton#botonRandom:pressed {
+    background-color: azure;
+}
+
+QMenuBar {
+    background-color: rgb(29, 29, 29);
+    color: white;
+    font-weight: bold;
+}
+
+QMenuBar QMenu {
+    color: white;
+    font-weight: bold;
+}
+
+QMenuBar QMenu::item:selected {
+    background-color: darkgray;
+}
+
+QMenuBar QMenu::item:pressed {
+    background-color: gray;
+}
