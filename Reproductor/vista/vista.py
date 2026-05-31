@@ -15,8 +15,8 @@ class VistaPrincipal(QMainWindow):
         with open('Reproductor/estilos.css', 'r') as file:
             style = file.read()
         self.setStyleSheet(style)
-        self.mp3_volumen_slider.setValue(50)
-        self.mp4_volumen_slider.setValue(50)
+        self.mp3_volumen_slider.setValue(100)
+        self.mp4_volumen_slider.setValue(100)
 
     def initialize_ui(self):
         self.setGeometry(100,100,800,500)
@@ -29,7 +29,6 @@ class VistaPrincipal(QMainWindow):
 
     def generar_pestanyas(self):
         self.tab_bar = QTabWidget(self)
-        self.tab_bar.currentChanged.connect(self.cambio_pestanya)
         self.reproductorMP3_container = QWidget()
         self.reproductorMP4_container = QWidget()
         self.galeria_container = QWidget()
@@ -92,6 +91,10 @@ class VistaPrincipal(QMainWindow):
 
         self.reproductorMP3_container.setLayout(main_v_box)
 
+        self.mp3_botton_play.setEnabled(False)
+        self.mp3_botton_next.setEnabled(False)
+        self.mp3_botton_before.setEnabled(False)
+
     def construir_pestanya_MP4(self):
         main_v_box = QVBoxLayout()
         buttons_h_box = QHBoxLayout()
@@ -133,6 +136,10 @@ class VistaPrincipal(QMainWindow):
         main_v_box.addWidget(buttons_container)
 
         self.reproductorMP4_container.setLayout(main_v_box)
+
+        self.mp4_botton_play.setEnabled(False)
+        self.mp4_botton_next.setEnabled(False)
+        self.mp4_botton_before.setEnabled(False)
 
     def construir_pestanya_galeria(self):
         main_v_box = QVBoxLayout()
@@ -202,6 +209,9 @@ class VistaPrincipal(QMainWindow):
 
         self.galeria_container.setLayout(main_v_box)
 
+        self.botton_next.setEnabled(False)
+        self.botton_before.setEnabled(False)
+
     def montar_menu_superior(self):
         self.menuBar()
         menu_file = self.menuBar().addMenu("Archivo")
@@ -239,9 +249,9 @@ class VistaPrincipal(QMainWindow):
     def actualizar_boton_play(self, reproduciendo):
         boton = self.mp3_botton_play if self.pestanya_actual() == 0 else self.mp4_botton_play
         if reproduciendo:
-            self.mp3_botton_play.setStyleSheet("image: url('Reproductor/imagenes/play.png');")
+            boton.setStyleSheet("image: url('Reproductor/imagenes/play.png');")
         else:
-            self.mp3_botton_play.setStyleSheet("image: url('Reproductor/imagenes/pause.png');")
+            boton.setStyleSheet("image: url('Reproductor/imagenes/pause.png');")
 
     def pestanya_actual(self):
         return self.tab_bar.currentIndex()

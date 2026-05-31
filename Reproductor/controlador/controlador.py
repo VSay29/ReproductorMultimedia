@@ -23,7 +23,7 @@ class Controlador:
         self.vista.abrir_carpeta_action.triggered.connect(self.abrir_carpeta)
         self.vista.listar_action.triggered.connect(self.mostrar_ocultar_panel_lateral)
         self.vista.lista.itemSelectionChanged.connect(self.manejar_selector_elemento_lista)
-        self.vista.tab_bar.currentChanged.connect(self.limpiar_lista)
+        self.vista.tab_bar.currentChanged.connect(self.limpiar)
 
         self.vista.mp3_botton_next.clicked.connect(self.siguiente)
         self.vista.mp4_botton_next.clicked.connect(self.siguiente)
@@ -79,17 +79,34 @@ class Controlador:
             if pestanya == 0:
                 archivos = self.reproductor.obtener_canciones(ruta_carpeta)
                 icono = QIcon("Reproductor/imagenes/mp3Icon.png")
+                self.vista.mp3_botton_next.setEnabled(True)
+                self.vista.mp3_botton_before.setEnabled(True)
             elif pestanya == 1:
                 archivos = self.reproductor.obtener_videos(ruta_carpeta)
                 icono = QIcon("Reproductor/imagenes/mp4Icon.png")
+                self.vista.mp4_botton_next.setEnabled(True)
+                self.vista.mp4_botton_before.setEnabled(True)
             elif pestanya == 2:
                 archivos = self.reproductor.obtener_imagenes(ruta_carpeta)
                 icono = QIcon("Reproductor/imagenes/jpgIcon.png")
+                self.vista.botton_next.setEnabled(True)
+                self.vista.botton_before.setEnabled(True)
 
             self.vista.cargar_lista(archivos, icono)
 
-    def limpiar_lista(self):
+    def limpiar(self):
+        self.timer.stop()
+        self.reproductor.detener()
         self.vista.lista.clear()
+        self.vista.actualizar_boton_play(False)
+        self.vista.mp3_botton_play.setEnabled(False)
+        self.vista.mp4_botton_play.setEnabled(False)
+        self.vista.mp3_botton_next.setEnabled(False)
+        self.vista.mp3_botton_before.setEnabled(False)
+        self.vista.mp4_botton_next.setEnabled(False)
+        self.vista.mp4_botton_before.setEnabled(False)
+        self.vista.botton_next.setEnabled(False)
+        self.vista.botton_before.setEnabled(False)
 
     def manejar_selector_elemento_lista(self):
         elemento = self.vista.lista.currentItem()
@@ -101,17 +118,22 @@ class Controlador:
                 self.reproductor.cargar(nombre)
                 self.reproductor.reproductor.mediaStatusChanged.connect(self.media_status_changed)
                 self.vista.actualizar_boton_play(True)
+                self.vista.mp3_botton_play.setEnabled(True)
             elif pestanya == 1:
                 self.vista.mp4_slider.setValue(0)
                 self.reproductor.cargar(nombre, self.vista.imagen_widget)
                 self.reproductor.reproductor.mediaStatusChanged.connect(self.media_status_changed)
                 self.vista.actualizar_boton_play(True)
+                self.vista.mp4_botton_play.setEnabled(True)
             elif pestanya == 2:
                 self.imagen_actual = nombre
                 ruta = os.path.join(self.reproductor.carpeta_actual, nombre)
                 self.vista.mostrar_imagen(ruta)
 
     def actualizar_slider(self):
+        if not self.reproductor.reproductor:
+            self.timer.stop()
+            return
         pestanya = self.vista.pestanya_actual()
         posicion = self.reproductor.posicion()
         if pestanya == 0:

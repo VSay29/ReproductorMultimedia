@@ -37,6 +37,13 @@ class Reproductor:
             self.reproductor.pause()
             self.reproduciendo = False
 
+    def detener(self):
+        if self.reproductor:
+            self.reproductor.stop()
+            self.reproductor.deleteLater()
+            self.reproductor = None
+            self.reproduciendo = False
+
     def obtener_canciones(self, ruta_carpeta):
         self.carpeta_actual = ruta_carpeta
         canciones = []
