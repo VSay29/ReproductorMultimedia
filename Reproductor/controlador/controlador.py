@@ -1,5 +1,5 @@
 import os
-from PyQt6.QtWidgets import QFileDialog
+from PyQt6.QtWidgets import QFileDialog, QMessageBox
 from PyQt6.QtCore import QStandardPaths, QTimer
 from PyQt6.QtGui import QIcon
 from PyQt6.QtMultimedia import QMediaPlayer
@@ -171,6 +171,7 @@ class Controlador:
         nombre_imagen = os.path.splitext(self.imagen_actual)[0]
         imagen.save(os.path.join(self.reproductor.carpeta_actual, f'{nombre_imagen}.png'))
         self.vista.galeria_label_resultado_conversion.setText(f"Convertida: {nombre_imagen}.png")
+        QMessageBox.information(self.vista, "Éxito", f"Conversión JPG a PNG realizada correctamente")
 
     def escalar_imagen(self):
         ancho = self.vista.ancho_input.value()
@@ -182,3 +183,4 @@ class Controlador:
             filtro = Image.Resampling.BICUBIC
         imagen_escalada = imagen.resize((ancho,altura), filtro)
         imagen_escalada.save("resultado.jpg")
+        QMessageBox.information(self.vista, "Éxito", f"Imagen escalada a {ancho}x{altura} correctamente")

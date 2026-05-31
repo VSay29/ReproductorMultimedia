@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import (QMainWindow, QLabel, QPushButton, QDockWidget,
                              QStatusBar, QTabWidget, QWidget, QHBoxLayout,
-                             QVBoxLayout, QListWidget, QListWidgetItem, QSlider, QGroupBox, QSpinBox)
+                             QVBoxLayout, QListWidget, QListWidgetItem,
+                             QSlider, QGroupBox, QSpinBox, QMessageBox)
 from PyQt6.QtGui import QPixmap, QAction, QKeySequence
 from PyQt6.QtCore import Qt
 from PyQt6.QtMultimediaWidgets import QVideoWidget
@@ -269,3 +270,4 @@ class VistaPrincipal(QMainWindow):
             item = QListWidgetItem(elemento)
             item.setIcon(icono)
             self.lista.addItem(item)
+        QMessageBox.information(self, "Éxito", "Lista cargada correctamente")
